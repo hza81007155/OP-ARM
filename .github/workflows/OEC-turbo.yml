@@ -97,9 +97,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
-          - 默认 IP：192.168.1.1  默认密码：password ( WiFi 密码相同 ）
-          - 底包来源：Breakings ( 高大全 ）
-          - 地址：https://github.com/breakingbadboy/OpenWrt
+          - 默认 IP：192.168.10.12  默认密码：password ( WiFi 密码相同 ）
 
     - name: Delete releases and workflows runs
       uses: ophub/delete-releases-workflows@main
