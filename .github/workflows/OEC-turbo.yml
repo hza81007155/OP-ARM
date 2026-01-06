@@ -73,7 +73,7 @@ jobs:
         WHOAMI: Milo_Zed
         # KERNEL_REPO_URL: https://github.com/ophub/kernel/releases/tag/kernel_stable
         KERNEL_VERSION_NAME: 6.1.1_6.6.1_6.12.1
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GIT_TOKEN }}
         OPENWRT_VER: R26.01.06
         KERNEL_AUTO_LATEST: true
         GZIP_IMGS: .gz
@@ -94,7 +94,7 @@ jobs:
         removeArtifacts: true
         tag: ${{ env.FILE_NAME }}
         commit: main
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GIT_TOKEN }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/*
         body: |
           - 默认 IP：192.168.10.12  默认密码：password ( WiFi 密码相同 ）
@@ -106,4 +106,4 @@ jobs:
         releases_keep_latest: 10
         delete_workflows: true
         workflows_keep_day: 3
-        gh_token: ${{ secrets.GITHUB_TOKEN }}
+        gh_token: ${{ secrets.GIT_TOKEN }}
