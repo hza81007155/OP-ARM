@@ -28,17 +28,6 @@ function merge_feed(){
     ./scripts/feeds install -a -p $1
 }
 rm -rf package/custom; mkdir package/custom
-rm -rf feeds/luci/applications/luci-app-passwall
-rm -rf feeds/luci/applications/luci-app-passwall2
-rm -rf feeds/luci/applications/luci-app-openclash
-rm -rf feeds/luci/applications/luci-app-lucky
-rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/packages/net/chinadns-ng
-rm -rf feeds/packages/net/geoview
-rm -rf feeds/packages/net/sing-box
-rm -rf feeds/packages/net/xray-core
-rm -rf feeds/packages/net/lucky
-rm -rf feeds/packages/utils/coremark
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/files/bin/config_generate
