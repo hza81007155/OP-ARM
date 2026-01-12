@@ -28,9 +28,21 @@ function merge_feed(){
     ./scripts/feeds install -a -p $1
 }
 rm -rf package/custom; mkdir package/custom
+rm -rf feeds/luci/applications/luci-app-passwall
+rm -rf feeds/luci/applications/luci-app-passwall2
+rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-lucky
+rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/packages/net/chinadns-ng
+rm -rf feeds/packages/net/geoview
+rm -rf feeds/packages/net/sing-box
+rm -rf feeds/packages/net/xray-core
+rm -rf feeds/packages/net/lucky
+rm -rf feeds/packages/utils/coremark
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.10.12/g' package/base-files/luci/bin/config_generate
 
 # poweroff
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
@@ -73,6 +85,14 @@ git clone --depth=1 --single-branch https://github.com/hza81007155/luci-app-cpuf
 git clone --depth=1 -b main https://github.com/linkease/nas-packages-luci package/nas-packages-luci
 git clone --depth=1 -b master https://github.com/linkease/nas-packages package/nas-packages
 git clone --depth=1 -b main https://github.com/linkease/istore package/istore
+
+# 移除 openwrt feeds 自带的核心库
+rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
+git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
+
+# 移除 openwrt feeds 过时的luci版本
+rm -rf feeds/luci/applications/luci-app-passwall
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
