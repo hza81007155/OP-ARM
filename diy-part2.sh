@@ -87,7 +87,7 @@ rm -rf feeds/luci/applications/luci-app-passwall
 git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/passwall-luci
 
 #Open Clash
-git clone --depth=1 --single-branch --branch "master" https://github.com/vernesong/OpenClash.git
+git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/luci-app-openclash
 
 #预置OpenClash内核和GEO数据
 export CORE_VER=https://raw.githubusercontent.com/vernesong/OpenClash/core/dev/core_version
