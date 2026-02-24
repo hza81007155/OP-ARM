@@ -9,7 +9,7 @@
 
 项目使用 Github Actions 拉取 Lean 的 Openwrt 源码仓库进行云编译
 
-固件默认 IP 地址：192.168.1.1 默认密码：password 无线默认密码：password
+固件默认 IP 地址：192.168.10.12 默认密码：password 无线默认密码：password
 
 
 
