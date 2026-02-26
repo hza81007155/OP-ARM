@@ -199,12 +199,3 @@ jobs:
           - 当前使用版本:【 编译前的最后一次[➦主源码](https://github.com/coolsnowwolf/lede)更新记录 】
           ${{ env.useVersionInfo }}
         artifacts: ${{ env.FIRMWARE }}/*
-
-    - name: Telegram notification
-      run: |
-        MSG="
-        编译时间：${{ env.DATE }}
-        OpenWrt 更新信息：${{ env.useVersionInfo }}
-        ${{ env.PRODUCT_NAME }} 编译完成
-        "
-        curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_TO }}&text=${MSG}"
