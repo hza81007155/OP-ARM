@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Rockchip
+name: Rockchip-ST
 
 on:
   repository_dispatch:
@@ -25,15 +25,15 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config-mini
+  CONFIG_FILE: config-st
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  FILE_NAME: openwrt_armsr-mini
-  PRODUCT_NAME: openwrt_armsr-mini
+  FILE_NAME: openwrt-rockchip-st
+  PRODUCT_NAME: openwrt-rockchip-st
 
 jobs:
   build:
