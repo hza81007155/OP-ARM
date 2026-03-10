@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: ARMv8_ROOTFS-mini
+name: rockchip
 
 on:
   repository_dispatch:
