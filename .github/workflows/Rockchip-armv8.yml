@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Rockchip
+name: Rockchip-armv8
 
 on:
   repository_dispatch:
