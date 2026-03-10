@@ -1,8 +1,0 @@
-src-git packages https://github.com/coolsnowwolf/packages^fe72c23
-src-git luci https://github.com/coolsnowwolf/luci.git^b692039
-src-git routing https://github.com/coolsnowwolf/routing^d613875
-src-git telephony https://github.com/coolsnowwolf/telephony.git^a04b7ac
-src-git helloworld https://github.com/fw876/helloworld^25f073e
-src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git^7a642ad
-src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2.git^c034a91
-src-git istore https://github.com/linkease/istore^a4a02e7
