@@ -1,184 +1,70 @@
-### Init
-CONFIG_TARGET_rockchip=y
-CONFIG_TARGET_rockchip_armv8=y
-CONFIG_TARGET_MULTI_PROFILE=y
-CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5c=y
-CONFIG_TARGET_DEVICE_rockchip_armv8_DEVICE_friendlyarm_nanopi-r5s=y
+# 1. 目标平台与架构配置
+CONFIG_TARGET_armsr=y
+CONFIG_TARGET_armsr_armv8=y
+CONFIG_TARGET_armsr_armv8_generic=y
 
-### Basic
-CONFIG_ALL_KMODS=y
-CONFIG_ALL_NONSHARED=y
-CONFIG_KERNEL_BUILD_DOMAIN="cooluc.com"
-CONFIG_KERNEL_BUILD_USER="admin"
-CONFIG_KERNEL_CFLAGS="-march=armv8.2-a+crypto+crc -mcpu=cortex-a55+crypto+crc -mtune=cortex-a55"
-CONFIG_KERNEL_MEMCG_V1=y
-CONFIG_KERNEL_MPTCP=y
-CONFIG_KERNEL_MPTCP_IPV6=y
-# CONFIG_KERNEL_PREEMPT_RT is not set
-CONFIG_PACKAGE_autocore-arm=y
-CONFIG_PACKAGE_bind-host=y
-CONFIG_PACKAGE_block-mount=y
-CONFIG_PACKAGE_coremark=y
-CONFIG_PACKAGE_default-settings=y
-CONFIG_TARGET_KERNEL_PARTSIZE=32
-CONFIG_TARGET_ROOTFS_PARTSIZE=944
+# 2. 编译输出格式（仅生成 rootfs.tar.gz）
 CONFIG_TARGET_ROOTFS_TARGZ=y
-CONFIG_COREMARK_NUMBER_OF_THREADS=6
-# CONFIG_KERNEL_KALLSYMS is not set
+# 关闭其他输出格式（避免冗余）
+CONFIG_TARGET_ROOTFS_SQUASHFS=n
+CONFIG_TARGET_ROOTFS_EXT4FS=n
+CONFIG_TARGET_ROOTFS_ISO=n
+CONFIG_TARGET_ROOTFS_JFFS2=n
 
-### Video Support
-CONFIG_PACKAGE_kmod-drm-rockchip=y
-CONFIG_PACKAGE_kmod-drm-panfrost=y
-
-### Curl
-CONFIG_PACKAGE_curl=y
-CONFIG_PACKAGE_libcurl=y
-CONFIG_LIBCURL_NGHTTP3=y
-CONFIG_LIBCURL_NGTCP2=y
-CONFIG_LIBCURL_OPENSSL=y
-# CONFIG_LIBCURL_GNUTLS is not set
-# CONFIG_LIBCURL_MBEDTLS is not set
-# CONFIG_LIBCURL_NOSSL is not set
-# CONFIG_LIBCURL_WOLFSSL is not set
-
-### Firewall
-CONFIG_PACKAGE_nat6=y
-
-# Natflow
-CONFIG_PACKAGE_natflow=m
-
-### Zram
-CONFIG_PACKAGE_zram-swap=y
-CONFIG_ZRAM_DEF_COMP_LZ4=y
-
-### Busybox
+# 3. 核心系统组件（必须保留）
 CONFIG_BUSYBOX_CUSTOM=y
-CONFIG_BUSYBOX_CONFIG_ASH_HELP=y
-CONFIG_BUSYBOX_CONFIG_FEATURE_EDITING_HISTORY=1024
-CONFIG_BUSYBOX_CONFIG_FEATURE_EDITING_SAVEHISTORY=y
-CONFIG_BUSYBOX_CONFIG_FEATURE_PREFER_IPV4_ADDRESS=y
-CONFIG_BUSYBOX_CONFIG_FEATURE_SH_HISTFILESIZE=y
-CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
+CONFIG_COREFILES=y
+CONFIG_FSTOOLS=y
+CONFIG_LIBC=y
+CONFIG_LINUX=y
+CONFIG_MUSL=y
+CONFIG_PROCD=y
+CONFIG_UBOX=y
+CONFIG_UBUS=y
+CONFIG_UCI=y
+CONFIG_UCODE=y
+CONFIG_LOGD=y
+CONFIG_JSONC=y
 
-### Dnsmasq
-CONFIG_PACKAGE_dnsmasq-full=y
-# CONFIG_PACKAGE_dnsmasq_full_broken_rtc is not set
-# CONFIG_PACKAGE_dnsmasq is not set
+# 4. 网络基础功能（必备）
+CONFIG_NETIFD=y
+CONFIG_DNSMASQ=y          # DNS解析
+CONFIG_UDHCPD=y           # DHCP服务
+CONFIG_UDHCPC=y           # DHCP客户端
+CONFIG_IPTABLES=y         # 基础防火墙
+CONFIG_IP6TABLES=y        # IPv6防火墙（可选，按需开启）
 
-### Luci
-CONFIG_PACKAGE_luci=y
-CONFIG_PACKAGE_luci-lib-base=y
-CONFIG_PACKAGE_luci-lib-ip=y
-CONFIG_PACKAGE_luci-lib-ipkg=y
-CONFIG_PACKAGE_luci-lib-jsonc=y
-CONFIG_PACKAGE_luci-lib-nixio=y
-CONFIG_PACKAGE_luci-nginx=y
-CONFIG_LUCI_LANG_zh_Hans=y
-# CONFIG_LUCI_CSSTIDY is not set
-# CONFIG_LUCI_JSMIN is not set
+# 5. 基础命令行工具
+CONFIG_BASH=n             # 关闭bash，用ash（更小）
+CONFIG_ASH=y              # 默认shell
+CONFIG_WGET=y             # wget下载工具
+CONFIG_CURL=n             # 关闭curl（按需开启）
+CONFIG_PING=y             # ping工具
+CONFIG_TRACEROUTE=y       # 路由追踪
+CONFIG_NETSTAT=y          # 网络状态查看
 
-### Nginx
-CONFIG_PACKAGE_nginx-ssl=y
-CONFIG_PACKAGE_nginx-mod-brotli=y
-CONFIG_PACKAGE_nginx-mod-luci=y
-CONFIG_PACKAGE_nginx-mod-rtmp=y
-CONFIG_PACKAGE_nginx-mod-stream=y
-CONFIG_PACKAGE_nginx-mod-ubus=y
-CONFIG_PACKAGE_nginx-mod-zstd=y
-CONFIG_PACKAGE_nginx-ssl-util=y
-CONFIG_NGINX_DAV=y
-CONFIG_NGINX_HTTP_AUTH_BASIC=y
-CONFIG_NGINX_HTTP_QUIC=y
-CONFIG_NGINX_HTTP_REAL_IP=y
-CONFIG_NGINX_HTTP_SUB=y
-CONFIG_NGINX_STREAM_REAL_IP=y
+# 6. 存储与文件系统
+CONFIG_MKFS_EXT4=y        # ext4文件系统支持
+CONFIG_MKFS_FAT=y         # FAT32支持
+CONFIG_MOUNT=y            # 挂载工具
+CONFIG_PARTED_MINIMAL=y   # 分区工具（最小化）
 
-### APPS
-CONFIG_PACKAGE_luci-app-autoreboot=y
-CONFIG_PACKAGE_luci-app-cpufreq=y
-CONFIG_PACKAGE_luci-app-diskman=y
-CONFIG_PACKAGE_luci-app-filemanager=y
-CONFIG_PACKAGE_luci-app-ramfree=y
-CONFIG_PACKAGE_luci-app-ttyd=y
-CONFIG_PACKAGE_luci-app-upnp=y
+# 7. 编译优化（可选）
+CONFIG_OPTIMIZE_FOR_PERFORMANCE=y  # 性能优化
+CONFIG_CPU_TYPE="cortex-a53"       # 适配armv8通用架构（a53/a72通用）
 
-### OpenSSL
-CONFIG_OPENSSL_ENGINE=y
-CONFIG_OPENSSL_OPTIMIZE_SPEED=y
-CONFIG_OPENSSL_WITH_ASM=y
-CONFIG_PACKAGE_libopenssl-afalg=y
-CONFIG_PACKAGE_libopenssl-conf=y
-CONFIG_PACKAGE_libopenssl-devcrypto=y
-CONFIG_PACKAGE_libopenssl-legacy=y
-CONFIG_PACKAGE_openssl-util=y
-# CONFIG_PACKAGE_libopenssl-padlock is not set
-# CONFIG_OPENSSL_WITH_ERROR_MESSAGES is not set
+# 8. 关闭调试与冗余组件（减小体积）
+CONFIG_DEBUG=n
+CONFIG_KERNEL_DEBUG=n
+CONFIG_KERNEL_DEBUG_FS=n
+CONFIG_PACKAGE_kmod-usb=n          # 无USB可关闭
+CONFIG_PACKAGE_kmod-bluetooth=n    # 无蓝牙可关闭
+# CONFIG_PACKAGE_luci=n              # 关闭LuCI web界面（按需开启）
 
-### Share Network
-CONFIG_PACKAGE_usbmuxd=y
-CONFIG_PACKAGE_kmod-usb-net-rndis=y
-CONFIG_PACKAGE_kmod-usb-net-ipheth=y
-
-### Kernel Modules
-CONFIG_PACKAGE_kmod-bonding=y
-CONFIG_PACKAGE_kmod-br-netfilter=y
-CONFIG_PACKAGE_kmod-button-hotplug=y
-CONFIG_PACKAGE_kmod-crypto-chacha20poly1305=y
-CONFIG_PACKAGE_kmod-crypto-sha256=y
-CONFIG_PACKAGE_kmod-fs-exfat=y
-CONFIG_PACKAGE_kmod-fs-f2fs=y
-CONFIG_PACKAGE_kmod-fs-ntfs3=y
-CONFIG_PACKAGE_kmod-fs-vfat=y
-CONFIG_PACKAGE_kmod-fs-xfs=y
-CONFIG_PACKAGE_kmod-hwmon-pwmfan=y
-CONFIG_PACKAGE_kmod-ikconfig=y
-CONFIG_PACKAGE_kmod-inet-diag=y
-CONFIG_PACKAGE_kmod-ipsec4=y
-CONFIG_PACKAGE_kmod-ipsec6=y
-CONFIG_PACKAGE_kmod-mac80211=y
-CONFIG_PACKAGE_kmod-nf-socket=y
-CONFIG_PACKAGE_kmod-nft-fullcone=y
-CONFIG_PACKAGE_kmod-nft-offload=y
-CONFIG_PACKAGE_kmod-nft-socket=y
-CONFIG_PACKAGE_kmod-nft-tproxy=y
-CONFIG_PACKAGE_kmod-sched-bpf=y
-CONFIG_PACKAGE_kmod-sched-cake=y
-CONFIG_PACKAGE_kmod-sched-core=y
-CONFIG_PACKAGE_kmod-sched=y
-CONFIG_PACKAGE_kmod-tcp-bbr3=y
-CONFIG_PACKAGE_kmod-tcp-brutal=y
-CONFIG_PACKAGE_kmod-tls=y
-CONFIG_PACKAGE_kmod-tun=y
-CONFIG_PACKAGE_kmod-usb-hid=y
-CONFIG_PACKAGE_kmod-usb-storage-uas=y
-CONFIG_PACKAGE_kmod-usb2-pci=y
-CONFIG_PACKAGE_kmod-usb2=y
-CONFIG_PACKAGE_kmod-usb3=y
-CONFIG_PACKAGE_kmod-veth=y
-
-### Kernel Modules - USB WiFi Adapter
-CONFIG_PACKAGE_kmod-mt7921u=y
-
-### Utilities
-CONFIG_PACKAGE_bash=y
-CONFIG_PACKAGE_dmesg=y
-CONFIG_PACKAGE_openssh-sftp-server=y
-CONFIG_PACKAGE_taskset=y
-CONFIG_PACKAGE_wget-ssl=y
-CONFIG_PACKAGE_wpad-openssl=y
-
-### GNU Core Utilities
-CONFIG_PACKAGE_coreutils=y
-CONFIG_PACKAGE_coreutils-dircolors=y
-CONFIG_PACKAGE_coreutils-ls=y
-
-### Version
-CONFIG_IMAGEOPT=y
+# 9. 版本与编译参数
 CONFIG_VERSIONOPT=y
-CONFIG_VERSION_FILENAMES=y
-
-### ZLIB
-CONFIG_ZLIB_OPTIMIZE_SPEED=y
+CONFIG_VERSION_NICK="armsr-armv8-rootfs"
+CONFIG_CCACHE=n  # 关闭ccache（首次编译无需）
 
 # APP
 ONFIG_PACKAGE_luci-app-linkease=y
@@ -205,7 +91,11 @@ CONFIG_PACKAGE_luci-app-passwall2_INCLUDE_V2ray_Plugin=y
 
 # 4. Themes
 CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-app-argon-config=y
 # CONFIG_PACKAGE_luci-theme-argon-mod is not set
 # CONFIG_PACKAGE_luci-theme-atmaterial_new is not set
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 # CONFIG_PACKAGE_luci-theme-design is not set
+
+# ssh
+CONFIG_PACKAGE_openssh-sftp-server=y
