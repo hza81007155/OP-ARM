@@ -32,8 +32,8 @@ env:
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  FILE_NAME: openwrt_armsr-mini
-  PRODUCT_NAME: openwrt_armsr-mini
+  FILE_NAME: openwrt_armsr-efi
+  PRODUCT_NAME: openwrt_armsr-efi
 
 jobs:
   build:
