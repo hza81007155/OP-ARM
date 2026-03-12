@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: armsr-armv8
+name: ARMV8-armsr-efi
 
 on:
   repository_dispatch:
@@ -32,8 +32,8 @@ env:
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  FILE_NAME: openwrt_armsr-efi
-  PRODUCT_NAME: openwrt_armsr-efi
+  FILE_NAME: ARMV8-armsr-efi
+  PRODUCT_NAME: ARMV8-armsr-efi
 
 jobs:
   build:
