@@ -52,15 +52,17 @@ function git_sparse_clone() {
 # 添加插件
 git clone --depth=1 -b main https://github.com/pengcong226/luci-app-easy-mwan3.git
 git_sparse_clone openwrt-24.10 https://github.com/openwrt/packages utils/coremark
-git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
 git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
-git clone --depth=1 -b master https://github.com/hza81007155/luci-theme-argon package/luci-theme-argon
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash package/luci-app-openclash
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 -b main https://github.com/Openwrt-Passwall/openwrt-passwall package/luci-app-passwall
 git clone --depth=1 -b main https://github.com/Openwrt-Passwall/openwrt-passwall2 package/openwrt-passwall2
 git clone https://github.com/sirpdboy/luci-app-taskplan package/luci-app-taskplan
 git clone https://github.com/miaoermua/luci-app-leigod-acc package/luci-app-leigod-acc
+
+# Argone theme
+git clone --depth=1 -b 18.06 https://github.com/hza81007155/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 -b 18.06 https://github.com/hza81007155/luci-app-argon-config package/luci-app-argon-config
 
 # adguardHome
 git clone --depth=1 -b master https://github.com/rufengsuixing/luci-app-adguardhome.git
